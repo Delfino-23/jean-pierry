@@ -1,0 +1,14 @@
+{
+  "name": "meu-app-nwjs",
+  "version": "1.0.0",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "nw ."
+  },
+  "window": {
+    "title": "Meu Primeiro App NW.js",
+    "width": 800,
+    "height": 600,
+    "toolbar": true
+  }
+}
