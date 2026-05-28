@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub - Loja de Roupas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>StyleHub</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <div class="cart-icon">
+                    <a href="src/carrinho.html">🛒 Carrinho (<span id="cart-count">0</span>)</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="banner" id="inicio">
+        <div class="banner-content">
+            <h2>Bem-vindo à StyleHub</h2>
+            <p>Descubra a moda que combina com seu estilo</p>
+            <button class="btn-primary" onclick="scrollTo('#produtos')">Ver Coleção</button>
+        </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="categorias">
+        <div class="container">
+            <h2>Categorias</h2>
+            <div class="categoria-grid">
+                <div class="categoria-card">
+                    <img src="https://via.placeholder.com/200?text=Camisetas" alt="Camisetas">
+                    <h3>Camisetas</h3>
+                    <p>Confortáveis e versáteis</p>
+                </div>
+                <div class="categoria-card">
+                    <img src="https://via.placeholder.com/200?text=Calças" alt="Calças">
+                    <h3>Calças</h3>
+                    <p>Modernas e elegantes</p>
+                </div>
+                <div class="categoria-card">
+                    <img src="https://via.placeholder.com/200?text=Vestidos" alt="Vestidos">
+                    <h3>Vestidos</h3>
+                    <p>Sofisticados e femininos</p>
+                </div>
+                <div class="categoria-card">
+                    <img src="https://via.placeholder.com/200?text=Jaquetas" alt="Jaquetas">
+                    <h3>Jaquetas</h3>
+                    <p>Impermeável e estilosa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section class="produtos" id="produtos">
+        <div class="container">
+            <h2>Produtos em Destaque</h2>
+            <div class="filtros">
+                <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="camisetas">Camisetas</button>
+                <button class="filtro-btn" data-filtro="calças">Calças</button>
+                <button class="filtro-btn" data-filtro="vestidos">Vestidos</button>
+            </div>
+            <div class="produto-grid" id="product-grid">
+                <!-- Produtos serão carregados aqui via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <p>A StyleHub é uma loja online dedicada a trazer as tendências de moda mais recentes para você.
+                Com roupas de qualidade e preços acessíveis, nos comprometemos com sua satisfação.</p>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contato" id="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <form class="form-contato">
+                <input type="text" placeholder="Seu Nome" required>
+                <input type="email" placeholder="Seu Email" required>
+                <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+                <button type="submit" class="btn-primary">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StyleHub. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="#">FAQ</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/produtos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
