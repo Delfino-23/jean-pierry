@@ -1,111 +1,225 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModaExpress - Sistema de Loja</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Luare | Gestao Premium de Moda</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <!-- Menu Lateral -->
-    <aside>
-        <div class="logo">
-            <h2>👕 ModaExpress</h2>
+    <aside class="sidebar" id="sidebar" aria-hidden="true">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">Jean Pierry</span>
+            <button class="sidebar-close" id="sidebarClose" aria-label="Fechar sidebar">
+                <!-- X icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
         </div>
-        <ul class="menu-items">
-            <li class="active">
-                <a href="index.html">🏠 Início</a>
-            </li>
-            <li>
-                <a href="produtos.html">📦 Produtos</a>
-            </li>
-            <li>
-                <a href="carrinho.html">🛒 Carrinho</a>
-            </li>
-            <li>
-                <a href="relatorios.html">📊 Relatórios</a>
-            </li>
-            <li>
-                <a href="configuracoes.html">⚙️ Configurações</a>
-            </li>
-        </ul>
-        <div class="system-info">
-            <p>App Desktop v1.0.0</p>
-            <!-- O Node.js vai preencher isso dinamicamente -->
-            <p id="os-info">Carregando SO...</p>
+
+        <nav class="sidebar-nav">
+            <a href="#">Nouvelles Arrivées</a>
+            <a href="#">Femme</a>
+            <a href="#">Homme</a>
+            <a href="#">Collections</a>
+            <a href="#">Acessórios</a>
+            <a href="#">Joalheria</a>
+            <a href="#">Mundo da Marca</a>
+        </nav>
+
+        <div class="sidebar-sub">
+            <a href="#">Boutiques</a>
+            <a href="#">Serviço ao Cliente</a>
+            <a href="#">Sustentabilidade</a>
         </div>
     </aside>
 
-    <!-- Conteúdo da Página -->
-    <main>
-        <header>
-            <h1>Vitrine de Produtos</h1>
-            <div class="user-profile">
-                👤 Vendedor: Lucas
-            </div>
-        </header>
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-inner">
 
-        <!-- Grade de Roupas -->
-        <div class="vitrine">
-
-            <!-- Produto 1 -->
-            <div class="card-produto">
-                <div class="produto-imagem">Camiseta Básica</div>
-                <div class="produto-info">
-                    <h3>Camiseta Algodão Premium Preta</h3>
-                    <div class="produto-preco">R$ 59,90</div>
-                    <button class="btn-comprar" onclick="adicionarAoCarrinho('Camiseta Preta')">Adicionar</button>
-                </div>
-            </div>
-
-            <!-- Produto 2 -->
-            <div class="card-produto">
-                <div class="produto-imagem">Calça Jeans</div>
-                <div class="produto-info">
-                    <h3>Calça Jeans Slim Fit Masculina</h3>
-                    <div class="produto-preco">R$ 129,90</div>
-                    <button class="btn-comprar" onclick="adicionarAoCarrinho('Calça Jeans')">Adicionar</button>
-                </div>
+            <!-- Esquerda -->
+            <div class="nav-left">
+                <button class="nav-btn" id="menuBtn" aria-label="Abrir menu">
+                    <!-- Hambúrguer icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                        <line x1="3" y1="7" x2="21" y2="7" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="17" x2="21" y2="17" />
+                    </svg>
+                    <span>Menu</span>
+                </button>
+                <button class="nav-btn" aria-label="Buscar">
+                    <!-- Lupa icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                        <circle cx="11" cy="11" r="7" />
+                        <line x1="16.5" y1="16.5" x2="22" y2="22" />
+                    </svg>
+                    <span>Buscar</span>
+                </button>
             </div>
 
-            <!-- Produto 3 -->
-            <div class="card-produto">
-                <div class="produto-imagem">Jaqueta</div>
-                <div class="produto-info">
-                    <h3>Jaqueta Corta Vento Impermeável</h3>
-                    <div class="produto-preco">R$ 189,90</div>
-                    <button class="btn-comprar" onclick="adicionarAoCarrinho('Jaqueta Corta Vento')">Adicionar</button>
-                </div>
+            <!-- Centro: Logo -->
+            <div class="nav-logo">
+                <a href="#">Jean Pierry</a>
             </div>
 
-            <!-- Produto 4 -->
-            <div class="card-produto">
-                <div class="produto-imagem">Vestido</div>
-                <div class="produto-info">
-                    <h3>Vestido Mid Canelado Casual</h3>
-                    <div class="produto-preco">R$ 89,90</div>
-                    <button class="btn-comprar" onclick="adicionarAoCarrinho('Vestido Mid')">Adicionar</button>
-                </div>
+            <!-- Direita -->
+            <div class="nav-right">
+
+                <!-- Favoritos -->
+                <button class="nav-icon" aria-label="Favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                </button>
+
+                <!-- Minha conta -->
+                <button class="nav-icon" aria-label="Minha Conta">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </button>
             </div>
 
         </div>
-    </main>
+    </header>
 
-    <!-- Lógica em JavaScript (Mistura Front-end com Node.js) -->
-    <script>
-        // 1. Usando o Node.js para pegar informações do computador do usuário
-        const os = require('os');
-        const infoPlataforma = os.platform(); // Retorna 'win32', 'linux' ou 'darwin'
-        document.getElementById('os-info').innerText = `Sistema: Windows (Modo ${infoPlataforma})`;
+    <!-- Banner -->
+    <section class="hero">
+        <img class="hero-img" src="./assets/hero.jpg" alt="Jean Pierry — Coleção Haute Couture" loading="eager" />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Coleção Outono / Inverno 2025</p>
+            <h1 class="hero-title">L'Art de<br>la Silhouette</h1>
+            <a href="#colecao" class="hero-cta">Descubra a Coleção</a>
+        </div>
+    </section>
 
-        // 2. Função simulando o clique do carrinho
-        function adicionarAoCarrinho(nomeProduto) {
-            alert(`${nomeProduto} foi adicionado ao carrinho com sucesso!`);
-        }
-    </script>
+    <!-- Seção de Produtos -->
+    <section id="colecao">
+        <div class="section-header">
+            <p class="section-eyebrow">Nouvelles Arrivées</p>
+            <h2 class="section-title">A Nova <em>Coleção</em></h2>
+        </div>
+
+        <div class="products-section">
+            <!-- Filtros -->
+            <div class="filter-bar">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="tudo">Tudo</button>
+                    <button class="filter-tab" data-filter="feminino">Feminino</button>
+                    <button class="filter-tab" data-filter="masculino">Masculino</button>
+                    <button class="filter-tab" data-filter="acessorios">Acessórios</button>
+                </div>
+                <span class="filter-count">8 peças</span>
+            </div>
+        </div>
+
+        <div class="product-grid">
+            <!-- Produto 1 -->
+            <article class="product-card">
+                <div class="product-img-wrap">
+                    <span class="product-badge">Novo</span>
+                    <button class="product-fav" aria-label="Favoritar" data-fav>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80&auto=format&fit=crop"
+                        alt="Casaco Estruturado Noir" loading="lazy" />
+                    <button class="product-quick" data-add>Adicionar ao Carrinho</button>
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Casaco Estruturado</p>
+                    <p class="product-sub">Lã Merino — Noir</p>
+                    <p class="product-price">R$ 8.900</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Editorial Split -->
+    <section aria-label="Editorial">
+        <div class="editorial">
+            <div class="editorial-img">
+                <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=900&q=85&auto=format&fit=crop"
+                    alt="Editorial Maison Élève" loading="lazy" />
+            </div>
+            <div class="editorial-text">
+                <p class="editorial-eyebrow">O Universo da Marca — 2025</p>
+                <h2 class="editorial-heading">Entre o Clássico<br>e o Moderno</h2>
+                <p class="editorial-body">
+                    Cada peça da Maison Élève nasce de um diálogo entre a tradição artesanal parisiense
+                    e a sensibilidade contemporânea. Tecidos selecionados à mão, cortes estudados,
+                    uma elegância que atravessa o tempo.
+                </p>
+                <a href="#" class="editorial-link">
+                    Ver o Lookbook
+                    <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+                        <line x1="0" y1="6" x2="17" y2="6" stroke="currentColor" stroke-width="1" />
+                        <polyline points="12,1 18,6 12,11" fill="none" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <p class="footer-brand">Maison Élève</p>
+                <p class="footer-tagline">
+                    L'élégance n'est pas une question de vêtement,<br>
+                    c'est une question d'être.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Coleções</h4>
+                <a href="#">Nouvelles Arrivées</a>
+                <a href="#">Femme</a>
+                <a href="#">Homme</a>
+                <a href="#">Acessórios</a>
+                <a href="#">Joalheria</a>
+            </div>
+            <div class="footer-col">
+                <h4>Serviços</h4>
+                <a href="#">Fale Conosco</a>
+                <a href="#">Boutiques</a>
+                <a href="#">Shipping & Devoluções</a>
+                <a href="#">Cuidado das Peças</a>
+            </div>
+            <div class="footer-col">
+                <h4>Maison</h4>
+                <a href="#">Nossa História</a>
+                <a href="#">Sustentabilidade</a>
+                <a href="#">Carreiras</a>
+                <a href="#">Imprensa</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">© 2025 Maison Élève. Todos os direitos reservados.</span>
+            <nav class="footer-legal">
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="#">Cookies</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,15 @@
+# Ignorar executáveis e bibliotecas dinâmicas
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignorar arquivos de pacotes e runtimes do NW.js / Chromium
+*.pak
+*.dat
+*.bin
+swiftshader/
+locales/
+
+# Ignorar dependências do Node (caso você venha a instalar)
+node_modules/

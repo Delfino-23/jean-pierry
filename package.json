@@ -1,14 +1,14 @@
 {
-  "name": "meu-app-nwjs",
+  "name": "luare-fashion-management",
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "src/index.html",
   "scripts": {
     "start": "nw ."
   },
   "window": {
-    "title": "Meu Primeiro App NW.js",
-    "width": 800,
-    "height": 600,
-    "toolbar": true
+    "title": "Luare | Gestao Premium de Moda",
+    "width": 1400,
+    "height": 900,
+    "toolbar": false
   }
 }
