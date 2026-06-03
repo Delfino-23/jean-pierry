@@ -1,3 +1,6 @@
+/* ============================================================
+    RESET & CSS VARIABLES
+============================================================ */
 *,
 *::before,
 *::after {
@@ -8,7 +11,7 @@
 
 :root {
     --white: #FFFFFF;
-    --black: #393D3B;
+    --black: #0A0A0A;
     --gray-light: #F5F5F4;
     --gray-mid: #E5E5E3;
     --gray-text: #8A8A88;
@@ -34,11 +37,13 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Sidebar overlay */
+/* ============================================================
+    SIDEBAR OVERLAY
+============================================================ */
 .sidebar-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0);
     z-index: 800;
     pointer-events: none;
     transition: background var(--transition);
@@ -49,7 +54,9 @@ body {
     pointer-events: all;
 }
 
-/* Sidebar */
+/* ============================================================
+    SIDEBAR
+============================================================ */
 .sidebar {
     position: fixed;
     top: 0;
@@ -155,7 +162,9 @@ body {
     color: var(--black);
 }
 
-/* Navbar */
+/* ============================================================
+    NAVBAR
+============================================================ */
 .navbar {
     position: fixed;
     top: 0;
@@ -299,10 +308,12 @@ body {
     }
 }
 
-/* Banner */
+/* ============================================================
+    HERO
+============================================================ */
 .hero {
-    height: 100vh;
-    min-height: 620px;
+    height: 82vh;
+    min-height: 520px;
     position: relative;
     overflow: hidden;
 }
@@ -312,9 +323,13 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
-    transform: scale(1.05);
+    transform: scale(1.04);
     transition: transform 8s ease-out;
     display: block;
+}
+
+.hero:hover .hero-img {
+    transform: scale(1);
 }
 
 .hero-overlay {
@@ -379,7 +394,51 @@ body {
     }
 }
 
-/* Section Headers */
+/* ============================================================
+    EDITORIAL STRIP
+============================================================ */
+.editorial-strip {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 22px 32px;
+    overflow: hidden;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 64px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+}
+
+.marquee-track span {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.marquee-dot {
+    opacity: 0.3 !important;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* ============================================================
+    SECTION HEADERS
+============================================================ */
 .section-header {
     text-align: center;
     padding: 88px 32px 64px;
@@ -399,7 +458,7 @@ body {
     font-family: var(--font-serif);
     font-size: clamp(28px, 4vw, 48px);
     font-weight: 400;
-    letter-spacing: 0.004em;
+    letter-spacing: 0.04em;
 }
 
 .section-title em {
@@ -408,7 +467,9 @@ body {
     font-weight: 300;
 }
 
-/* Produto */
+/* ============================================================
+    PRODUTOS — GRID
+============================================================ */
 .products-section {
     max-width: 1440px;
     margin: 0 auto;
@@ -427,10 +488,12 @@ body {
     flex-wrap: wrap;
     gap: 12px;
 }
+
 .filter-tabs {
     display: flex;
     gap: 32px;
 }
+
 .filter-tab {
     background: none;
     border: none;
@@ -445,11 +508,13 @@ body {
     border-bottom: 1px solid transparent;
     transition: color 0.2s, border-color 0.2s;
 }
+
 .filter-tab.active,
 .filter-tab:hover {
     color: var(--black);
     border-color: var(--black);
 }
+
 .filter-count {
     font-family: var(--font-sans);
     font-size: 9px;
@@ -464,16 +529,31 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
 }
+
 @media (max-width: 1024px) {
-    .product-grid { grid-template-columns: repeat(3, 1fr); }
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
+
 @media (max-width: 680px) {
-    .product-grid { grid-template-columns: repeat(2, 1fr); }
-    .products-section { padding: 0 12px 80px; }
-    .section-header { padding: 64px 20px 48px; }
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-section {
+        padding: 0 12px 80px;
+    }
+
+    .section-header {
+        padding: 64px 20px 48px;
+    }
 }
+
 @media (max-width: 380px) {
-    .product-grid { grid-template-columns: 1fr; }
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Produto card */
@@ -490,6 +570,7 @@ body {
     overflow: hidden;
     position: relative;
 }
+
 .product-img-wrap img {
     width: 100%;
     height: 100%;
@@ -497,6 +578,7 @@ body {
     display: block;
     transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .product-card:hover .product-img-wrap img {
     transform: scale(1.07);
 }
@@ -531,15 +613,28 @@ body {
     transition: opacity 0.25s;
     padding: 6px;
 }
-.product-fav svg { width: 18px; height: 18px; }
-.product-card:hover .product-fav { opacity: 1; }
-.product-fav.liked { opacity: 1; color: #B22; }
+
+.product-fav svg {
+    width: 18px;
+    height: 18px;
+}
+
+.product-card:hover .product-fav {
+    opacity: 1;
+}
+
+.product-fav.liked {
+    opacity: 1;
+    color: #B22;
+}
 
 /* Quick add */
 .product-quick {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(10,10,10,0.88);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.88);
     color: var(--white);
     font-family: var(--font-sans);
     font-size: 9px;
@@ -553,8 +648,14 @@ body {
     transform: translateY(100%);
     transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.product-card:hover .product-quick { transform: translateY(0); }
-.product-quick:hover { background: var(--black); }
+
+.product-card:hover .product-quick {
+    transform: translateY(0);
+}
+
+.product-quick:hover {
+    background: var(--black);
+}
 
 /* Info */
 .product-info {
@@ -562,6 +663,7 @@ body {
     background: var(--white);
     border-top: 1px solid var(--gray-mid);
 }
+
 .product-name {
     font-family: var(--font-sans);
     font-size: 10px;
@@ -571,6 +673,7 @@ body {
     margin-bottom: 6px;
     color: var(--black);
 }
+
 .product-sub {
     font-family: var(--font-sans);
     font-size: 9px;
@@ -579,6 +682,7 @@ body {
     color: var(--gray-text);
     margin-bottom: 12px;
 }
+
 .product-price {
     font-family: var(--font-italic);
     font-size: 15px;
@@ -588,7 +692,9 @@ body {
     letter-spacing: 0.02em;
 }
 
-/* Editorial Split */
+/* ============================================================
+    EDITORIAL SPLIT (Feature)
+============================================================ */
 .editorial {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -682,7 +788,80 @@ body {
     border-color: var(--white);
 }
 
-/* Footer */
+/* ============================================================
+    NEWSLETTER
+============================================================ */
+.newsletter {
+    background: var(--gray-light);
+    text-align: center;
+    padding: 96px 32px;
+}
+
+.newsletter .section-eyebrow {
+    margin-bottom: 16px;
+}
+
+.newsletter-title {
+    font-family: var(--font-serif);
+    font-size: clamp(24px, 3.5vw, 42px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+}
+
+.newsletter-sub {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--gray-text);
+    margin-bottom: 40px;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 440px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--black);
+}
+
+.newsletter-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--black);
+    padding: 14px 0;
+}
+
+.newsletter-input::placeholder {
+    color: var(--gray-text);
+}
+
+.newsletter-submit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    padding: 14px 0 14px 20px;
+    transition: opacity 0.2s;
+}
+
+.newsletter-submit:hover {
+    opacity: 0.5;
+}
+
+/* ============================================================
+    FOOTER
+============================================================ */
 footer {
     background: var(--black);
     color: rgba(255, 255, 255, 0.55);
@@ -793,4 +972,31 @@ footer {
 
 .footer-legal a:hover {
     color: var(--white);
+}
+
+/* ============================================================
+    TOAST NOTIFICATION
+============================================================ */
+.toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
