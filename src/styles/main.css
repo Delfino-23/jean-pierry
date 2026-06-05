@@ -1,6 +1,8 @@
 /* ============================================================
     RESET & CSS VARIABLES
 ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 *,
 *::before,
 *::after {
@@ -20,6 +22,7 @@
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-italic: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Montserrat', sans-serif;
+    --font-heptasl: 'Hepta Slab', serif;
 
     --nav-h: 72px;
     --transition: 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -467,13 +470,34 @@ body {
     font-weight: 300;
 }
 
+.section-bottom {
+    text-align: center;
+    padding: 20px 32px 64px;
+}
+
+.section-cta {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: var(--font-heptasl);
+    background: transparent;
+    border: 1px solid var(--black);
+    font-size: 12px;
+}
+
+.section-cta:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: transparent;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
 /* ============================================================
     PRODUTOS — GRID
 ============================================================ */
 .products-section {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 32px 112px;
+    padding: 0 32px 20px;
 }
 
 /* Filtros */
@@ -857,6 +881,139 @@ body {
 
 .newsletter-submit:hover {
     opacity: 0.5;
+}
+
+/* =============================
+       SEÇÃO DE SERVIÇOS
+    ============================= */
+.services-section {
+    padding: 80px 60px;
+    background: #fff;
+    text-align: center;
+}
+
+/* Cabeçalho */
+.services-header {
+    margin-bottom: 48px;
+}
+
+.services-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #1a1a18;
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+}
+
+.services-header p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #5a5a52;
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* Grid de 3 colunas */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card */
+.service-card {
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Container da imagem com overflow escondido para o zoom */
+.service-img-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    position: relative;
+}
+
+.service-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+/* Zoom suave no hover */
+.service-card:hover .service-img-wrap img {
+    transform: scale(1.05);
+}
+
+/* Informações abaixo da imagem */
+.service-body {
+    padding: 20px 0 0;
+}
+
+.service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #1a1a18;
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+}
+
+/* Link com underline estilo LV */
+.service-link {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #1a1a18;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    transition: opacity 0.25s ease;
+}
+
+.service-link:hover {
+    opacity: 0.55;
+}
+
+/* =============================
+       RESPONSIVO
+    ============================= */
+@media (max-width: 900px) {
+    .services-section {
+        padding: 60px 30px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px) {
+    .services-section {
+        padding: 48px 20px;
+    }
+
+    .services-header h2 {
+        font-size: 24px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin: 0 auto;
+    }
 }
 
 /* ============================================================
