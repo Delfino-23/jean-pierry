@@ -7,32 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jean Pierry | Moda</title>
     <link rel="stylesheet" href="styles/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+
 </head>
 
 <body>
 
     <!-- TOAST -->
-    <div class="toast" id="toast">Item adicionado ao carrinho</div>
+    <div class="toast" id="toast"></div>
 
-    <!-- OVERLAY DO SIDEBAR -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- OVERLAY COMPARTILHADO -->
+    <div class="overlay" id="overlay"></div>
 
-    <!-- SIDEBAR -->
+    <!-- ============================================================
+       SIDEBAR MENU
+  ============================================================ -->
     <aside class="sidebar" id="sidebar" aria-hidden="true">
         <div class="sidebar-header">
             <span class="sidebar-logo">Jean Pierry</span>
             <button class="sidebar-close" id="sidebarClose" aria-label="Fechar menu">
-                <!-- X icon -->
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                     <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
             </button>
         </div>
-
         <nav class="sidebar-nav">
-            <a href="#">Exclusividade</a>
+            <a href="#">Nouvelles Arrivées</a>
             <a href="#">Femme</a>
             <a href="#">Homme</a>
             <a href="#">Collections</a>
@@ -40,7 +44,6 @@
             <a href="#">Joalheria</a>
             <a href="#">Mundo da Marca</a>
         </nav>
-
         <div class="sidebar-sub">
             <a href="#">Boutiques</a>
             <a href="#">Serviço ao Cliente</a>
@@ -48,14 +51,93 @@
         </div>
     </aside>
 
-    <!-- NAVBAR -->
+    <!-- ============================================================
+       MODAL — PRODUTO
+  ============================================================ -->
+    <div class="modal-product" id="modalProduct" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+        <div class="modal-product-inner" id="modalProductInner">
+            <button class="mp-close" id="mpClose" aria-label="Fechar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+            <!-- Imagem -->
+            <div class="mp-img">
+                <img id="mpImg" src="" alt="" />
+            </div>
+            <!-- Detalhes -->
+            <div class="mp-details">
+                <p class="mp-eyebrow" id="mpEyebrow"></p>
+                <h2 class="mp-name" id="mpName"></h2>
+                <p class="mp-sub" id="mpSub"></p>
+                <p class="mp-price" id="mpPrice"></p>
+                <hr class="mp-divider" />
+                <p class="mp-desc" id="mpDesc"></p>
+                <p class="mp-size-label">Selecione o Tamanho</p>
+                <div class="mp-sizes" id="mpSizes"></div>
+                <div class="mp-actions">
+                    <button class="mp-btn-cart" id="mpBtnCart">Adicionar ao Carrinho</button>
+                    <button class="mp-btn-fav" id="mpBtnFav">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                        <span id="mpBtnFavText">Adicionar aos Favoritos</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL — CARRINHO
+  ============================================================ -->
+    <div class="modal-cart" id="modalCart" role="dialog" aria-modal="true" aria-label="Carrinho de compras">
+        <div class="modal-cart-inner">
+            <div class="cart-header">
+                <h2 class="cart-title">Meu Carrinho</h2>
+                <button class="cart-close" id="cartClose" aria-label="Fechar carrinho">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="cart-body" id="cartBody"></div>
+            <div class="cart-footer" id="cartFooter" style="display:none">
+                <div class="cart-subtotal">
+                    <span class="cart-subtotal-label">Subtotal</span>
+                    <span class="cart-subtotal-value" id="cartTotal"></span>
+                </div>
+                <button class="cart-btn-checkout">Finalizar Compra</button>
+                <button class="cart-btn-continue" id="cartContinue">Continuar Comprando</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL — FAVORITOS
+  ============================================================ -->
+    <div class="modal-fav" id="modalFav" role="dialog" aria-modal="true" aria-label="Lista de favoritos">
+        <div class="modal-fav-inner">
+            <div class="fav-header">
+                <h2 class="fav-title">Meus Favoritos</h2>
+                <button class="fav-close" id="favClose" aria-label="Fechar favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="fav-body" id="favBody"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
     <header class="navbar" id="navbar">
         <div class="nav-inner">
-
-            <!-- Esquerda -->
             <div class="nav-left">
                 <button class="nav-btn" id="menuBtn" aria-label="Abrir menu">
-                    <!-- Hambúrguer icon -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
                         <line x1="3" y1="7" x2="21" y2="7" />
                         <line x1="3" y1="12" x2="21" y2="12" />
@@ -64,7 +146,6 @@
                     <span>Menu</span>
                 </button>
                 <button class="nav-btn" aria-label="Buscar">
-                    <!-- Lupa icon -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
                         <circle cx="11" cy="11" r="7" />
                         <line x1="16.5" y1="16.5" x2="22" y2="22" />
@@ -73,24 +154,31 @@
                 </button>
             </div>
 
-            <!-- Centro: Logo -->
-            <div class="nav-logo">
-                <a href="#">Jean Pierry</a>
-            </div>
+            <div class="nav-logo"><a href="#">Jean Pierry</a></div>
 
-            <!-- Direita -->
             <div class="nav-right">
-                <a href="#" class="nav-link" id="contactLink">Fale Conosco</a>
+                <a href="#" class="nav-link">Fale Conosco</a>
 
                 <!-- Favoritos -->
-                <button class="nav-icon" aria-label="Favoritos">
+                <button class="nav-icon" id="navFavBtn" aria-label="Meus Favoritos">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
                         <path
                             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                     </svg>
+                    <span class="nav-badge" id="favBadge"></span>
                 </button>
 
-                <!-- Minha conta -->
+                <!-- Carrinho -->
+                <button class="nav-icon" id="navCartBtn" aria-label="Meu Carrinho">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                    <span class="nav-badge" id="cartBadge"></span>
+                </button>
+
+                <!-- Conta -->
                 <button class="nav-icon" aria-label="Minha Conta">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -98,13 +186,14 @@
                     </svg>
                 </button>
             </div>
-
         </div>
     </header>
 
-    <!-- HERO / BANNER PRINCIPAL -->
+    <!-- ============================================================
+       HERO
+  ============================================================ -->
     <section class="hero">
-        <img class="hero-img" src="assets/hero2.jpg" alt="Jean Pierry — Coleção Haute Couture" loading="eager" />
+        <img class="hero-img" src="./assets/flores.jpg" alt="Jean Pierry — Coleção Haute Couture" loading="eager" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <p class="hero-eyebrow">Coleção Outono / Inverno 2025</p>
@@ -113,208 +202,52 @@
         </div>
     </section>
 
-    <!-- SEÇÃO DE PRODUTOS -->
+    <!-- ============================================================
+       VITRINE DE PRODUTOS
+  ============================================================ -->
     <section id="colecao">
         <div class="section-header">
-            <p class="section-eyebrow">Exclusividade</p>
+            <p class="section-eyebrow">Nouvelles Arrivées</p>
             <h2 class="section-title">A Nova <em>Coleção</em></h2>
         </div>
 
         <div class="products-section">
-            <!-- Grade de produtos -->
-            <div class="product-grid">
-
-                <!-- Produto 1 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <span class="product-badge">Novo</span>
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/casaco-estruturado.jpg"
-                            alt="Casaco Estruturado Noir" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Casaco Estruturado</p>
-                        <p class="product-sub">Lã Merino — Noir</p>
-                        <p class="product-price">R$ 8.900</p>
-                    </div>
-                </article>
-
-                <!-- Produto 2 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/vestido-seda.jpg"
-                            alt="Vestido Seda Ivoire" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Vestido Seda</p>
-                        <p class="product-sub">Seda Natural — Ivoire</p>
-                        <p class="product-price">R$ 5.400</p>
-                    </div>
-                </article>
-
-                <!-- Produto 3 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <span class="product-badge">Exclusivo</span>
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/blazer-tailored.jpg"
-                            alt="Blazer Tailored Gris" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Blazer Tailored</p>
-                        <p class="product-sub">Crepe Japonês — Gris</p>
-                        <p class="product-price">R$ 6.200</p>
-                    </div>
-                </article>
-
-                <!-- Produto 4 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/calca-palazzo.jpg"
-                            alt="Calça Palazzo Blanc" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Calça Palazzo</p>
-                        <p class="product-sub">Viscose Premium — Blanc</p>
-                        <p class="product-price">R$ 3.800</p>
-                    </div>
-                </article>
-
-                <!-- Produto 5 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <span class="product-badge">Novo</span>
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/trench-coat.jpg"
-                            alt="Trench Coat Camel" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Trench Coat</p>
-                        <p class="product-sub">Gabardine — Camel</p>
-                        <p class="product-price">R$ 7.600</p>
-                    </div>
-                </article>
-
-                <!-- Produto 6 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/top-cetim.png"
-                            alt="Top Cetim Bordeaux" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Top Cetim</p>
-                        <p class="product-sub">Cetim de Seda — Bordeaux</p>
-                        <p class="product-price">R$ 2.400</p>
-                    </div>
-                </article>
-
-                <!-- Produto 7 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <span class="product-badge">Limitado</span>
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/cashmere-knit.jpg"
-                            alt="Cashmere Knit Oat" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Cashmere Knit</p>
-                        <p class="product-sub">Cashmere Puro — Oat</p>
-                        <p class="product-price">R$ 4.200</p>
-                    </div>
-                </article>
-
-                <!-- Produto 8 -->
-                <article class="product-card">
-                    <div class="product-img-wrap">
-                        <button class="product-fav" aria-label="Favoritar" data-fav>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                            </svg>
-                        </button>
-                        <img src="assets/saia-midi.jpg"
-                            alt="Saia Midi Charcoal" loading="lazy" />
-                        <button class="product-quick" data-add>Adicionar ao Carrinho</button>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">Saia Midi</p>
-                        <p class="product-sub">Lã Fina — Charcoal</p>
-                        <p class="product-price">R$ 3.100</p>
-                    </div>
-                </article>
-
-            </div>
+            <!-- Os cards são gerados pelo JS a partir do array PRODUCTS -->
+            <div class="product-grid" id="productGrid"></div>
         </div>
     </section>
 
-    <!-- EDITORIAL SPLIT -->
+    <!-- EDITORIAL -->
     <section aria-label="Editorial">
         <div class="editorial">
             <div class="editorial-img">
                 <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=900&q=85&auto=format&fit=crop"
-                    alt="Editorial Jean Pierry" loading="lazy" />
+                    alt="Editorial" loading="lazy" />
             </div>
             <div class="editorial-text">
                 <p class="editorial-eyebrow">O Universo da Marca — 2025</p>
                 <h2 class="editorial-heading">Entre o Clássico<br>e o Moderno</h2>
-                <p class="editorial-body">
-                    Cada peça da Jean Pierry nasce de um diálogo entre a tradição artesanal parisiense
-                    e a sensibilidade contemporânea. Tecidos selecionados à mão, cortes estudados,
-                    uma elegância que atravessa o tempo.
-                </p>
-                <a href="#" class="editorial-link">
-                    Ver o Lookbook
+                <p class="editorial-body">Cada peça da Jean Pierry nasce de um diálogo entre a tradição artesanal
+                    parisiense e a sensibilidade contemporânea. Tecidos selecionados à mão, cortes estudados, uma
+                    elegância que atravessa o tempo.</p>
+                <a href="#" class="editorial-link">Ver o Lookbook
                     <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
                         <line x1="0" y1="6" x2="17" y2="6" stroke="currentColor" stroke-width="1" />
                         <polyline points="12,1 18,6 12,11" fill="none" stroke="currentColor" stroke-width="1" />
                     </svg>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <p class="section-eyebrow">Exclusividade</p>
+        <h2 class="newsletter-title">Seja o Primeiro a Saber</h2>
+        <p class="newsletter-sub">Acesso antecipado a novas coleções, eventos e lançamentos exclusivos.</p>
+        <div class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Seu endereço de e-mail" aria-label="E-mail" />
+            <button class="newsletter-submit" type="button">Inscrever</button>
         </div>
     </section>
 
@@ -372,40 +305,29 @@
         <div class="footer-grid">
             <div>
                 <p class="footer-brand">Jean Pierry</p>
-                <p class="footer-tagline">
-                    L'élégance n'est pas une question de vêtement,<br>
-                    c'est une question d'être.
+                <p class="footer-tagline">L'élégance n'est pas une question de vêtement,<br>c'est une question d'être.
                 </p>
             </div>
             <div class="footer-col">
                 <h4>Coleções</h4>
-                <a href="#">Nouvelles Arrivées</a>
-                <a href="#">Femme</a>
-                <a href="#">Homme</a>
-                <a href="#">Acessórios</a>
-                <a href="#">Joalheria</a>
+                <a href="#">Nouvelles Arrivées</a><a href="#">Femme</a>
+                <a href="#">Homme</a><a href="#">Acessórios</a><a href="#">Joalheria</a>
             </div>
             <div class="footer-col">
                 <h4>Serviços</h4>
-                <a href="#">Fale Conosco</a>
-                <a href="#">Boutiques</a>
-                <a href="#">Shipping & Devoluções</a>
-                <a href="#">Cuidado das Peças</a>
+                <a href="#">Fale Conosco</a><a href="#">Boutiques</a>
+                <a href="#">Shipping & Devoluções</a><a href="#">Cuidado das Peças</a>
             </div>
             <div class="footer-col">
                 <h4>Maison</h4>
-                <a href="#">Nossa História</a>
-                <a href="#">Sustentabilidade</a>
-                <a href="#">Carreiras</a>
-                <a href="#">Imprensa</a>
+                <a href="#">Nossa História</a><a href="#">Sustentabilidade</a>
+                <a href="#">Carreiras</a><a href="#">Imprensa</a>
             </div>
         </div>
         <div class="footer-bottom">
             <span class="footer-copy">© 2025 Jean Pierry. Todos os direitos reservados.</span>
             <nav class="footer-legal">
-                <a href="#">Privacidade</a>
-                <a href="#">Termos</a>
-                <a href="#">Cookies</a>
+                <a href="#">Privacidade</a><a href="#">Termos</a><a href="#">Cookies</a>
             </nav>
         </div>
     </footer>
