@@ -1,12 +1,12 @@
 {
-  "name": "luare-fashion-management",
+  "name": "jean-pierry-management",
   "version": "1.0.0",
   "main": "src/index.html",
   "scripts": {
     "start": "nw ."
   },
   "window": {
-    "title": "Luare | Gestao Premium de Moda",
+    "title": "Jean | Gestao Premium de Moda",
     "width": 1400,
     "height": 900,
     "toolbar": false
